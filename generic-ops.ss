@@ -32,7 +32,7 @@
         (apply proc (map contents args))
         (error (format "OPERATION ~a IS NOT IMPLEMENTED FOR TYPES: ~a" op types)))))
 
-;; @TODO Try to rewrite this using `fold`
+;; TODO Try to rewrite this using `fold`
 (define (nary-generic op)
   (define (generic v . rest)
     (if (null? rest)
@@ -45,7 +45,7 @@
 (define * (nary-generic 'mul))
 (define (reverse x) (apply-generic 'reverse x))
 
-;; @TODO Implement unary minus (opposite operation)
+;; TODO Implement unary minus (opposite operation)
 (define (- a b) (+ a (* b -1)))
 (define (/ a b) (* a (reverse b)))
 

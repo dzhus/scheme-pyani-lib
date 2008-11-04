@@ -23,7 +23,7 @@
 
 ;; Predicate
 ;; 
-;; @TODO Extend the definition
+;; TODO Extend the definition
 (define (matrix? m)
   (and (vector? m)
        (vector-every vector? m)))
