@@ -1,0 +1,85 @@
+-*- mode: org -*-
+
+* About this package
+  This package provides some Scheme libraries intended to be shared at
+  the *source* level (like gnulib).
+** Simple implementation of matrices
+   This code is largely derived from matrix module I wrote when I
+   first introduced myself to Scheme in 2007.
+
+   Yes, I know that SLIB matrix module exists.
+   
+   I'd like to implement efficient [[sparse matrix]] storage scheme some
+   day.
+** Some useful functions for matrices and vectors
+** Generic operations
+   Addition, subtraction, multiplication and sometimes division for
+   matrices, vectors and numbers: this part is inspired by and derived
+   from generic arithmetics package described in SICP. However, this
+   package does not aim to implement neither advanced coercion magic
+   nor any kind of type tower. Instead it just provides homogenous
+   notation for different operations simply to make code more
+   readable. Compare:
+    
+       (matrix-*-vector (matrix-+-matrix m1 m2) v1)
+
+   or even (if you rename your identifiers)
+   
+       (v:* (m:+ m1 m2) v1)
+       
+   with
+
+       (* (+ m1 m2) v1)
+
+   With infix notation code involving different vector and matrix
+   operations will look even better.
+*** Implementation
+    Generic operations uses simple version of `apply-generic` and
+    single dispatching table (see `get-put.ss`) to store and apply
+    different operations.
+
+    Addition and multiplication are n-ary by definition, although
+    packages implement binary versions only. `nary-generic` from
+    `generic-ops.ss` gives a n-ary version of binary operation using
+    the rule of `(op a_1 a_2 a_3) ≡ (op (op a_1 a_2) a_3)`.
+
+    Use of this package for anything but «matrix-vector-number» triad
+    is not intended, so in some parts the abstraction level is lower
+    than it might be in a more complex system. For example, `type`
+    implementation in `generic-ops.ss` does know about every type
+    present in the system instead of using tagged data (like in SICP).
+    I can't see how it can harm anything.
+*** Usage
+    Requiring `generic-ops.ss` provides generic operations under
+    standard `+`, `*`, `-` and `/` identifiers. They are guaranteed to
+    work with Scheme numbers the same way built-in implementations do.
+
+    Using functions implemented by this package is also possible apart
+    from generic operations, as all `-ops.ss` modules provide them.
+* Limitations
+** Matrix and vectors are not interoperable
+   Probably that's where coercions may be needed — now it's
+   _impossible_ to multiply two vectors without implementing special
+   operation for these types, although it seems natural in mathematics
+   to treat vectors as though they were matrices with one of
+   dimensions equal to 1.
+
+   Moreover, rows and columns (which are all vectors, by the way) are
+   _indistinguishable_. Row and column structures are probably too
+   simple, therefore currently there is _no way_ to treat `matrix`
+   calls with `row` or `column` arguments differently.
+** Limitations are ok
+   This package works for me and is quite suitable for my needs; I
+   don't want to reimplement Maxima, so these limitations are likely
+   to persist in future versions.
+* To be done
+** TODO [[Sparse matrix]] implementation
+   Sparse matrices are often needed in various applications, for
+   example in optimization problems and control theory. Matrix package
+   will have to be refactored in order to provide the same operations
+   for matrices which use different storage schemes. Probably an
+   approach similar to one used in SICP to implement different
+   representations of complex numbers will be taken.
+
+** TODO Use contracts
+   Contracts good, bugs bad.
