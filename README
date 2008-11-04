@@ -83,3 +83,9 @@
 
 ** TODO Use contracts
    Contracts good, bugs bad.
+   
+** TODO Make some operations commutative
+   Some operations may be marked as commutative. Then it will be
+   possible to apply them both to arguments of types `t1 t2` and to
+   those of types `t2 t1` having operation implemented for `t1 t2`
+   only. For example, vector×scalar is the same as scalar×vector.
