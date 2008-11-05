@@ -7,7 +7,8 @@
    This code is largely derived from matrix module I wrote when I
    first introduced myself to Scheme in 2007.
 
-   Yes, I know that SLIB matrix module exists.
+   Yes, I know that SLIB matrix module exists. Yes, I've seen the
+   linear algebra package for PLT.
    
    I'd like to implement efficient [[sparse matrix]] storage scheme some
    day.
