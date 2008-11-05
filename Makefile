@@ -22,7 +22,7 @@ all: $(PLTNAME)
 
 install: all
 	$(NORMAL-INSTALL)
-	$(SETUP-PLT) $(LIBNAME)
+	$(SETUP-PLT) $(PLTNAME)
 
 uninstall:
 	$(NORMAL-UNINSTALL)
