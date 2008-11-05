@@ -15,6 +15,7 @@
          matrix-map
          rows-map
          row-map column-map
+         add-row add-column
          build-matrix identity-matrix
          euclidean-norm
          swap-matrix-rows)
@@ -71,6 +72,14 @@
 (define (build-matrix proc rows columns)
   (matrix-map (lambda (i j e) (proc i j))
               (make-vector rows (make-vector columns))))
+
+(define (add-row matrix row)
+  (vector-append matrix row))
+
+(define (add-column matrix column)
+  (vector-map (lambda (i matrix-row column-item)
+                (vector-append matrix-row (vector column-item)))
+              matrix column))
 
 ;; Norms
 (define (euclidean-norm m)
