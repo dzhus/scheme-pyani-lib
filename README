@@ -4,61 +4,67 @@
   This package provides some Scheme libraries of various flavor. It
   originates from some code I wanted to share across several of my
   programs.
-** Simple implementation of matrices
-   This code is largely derived from matrix module I wrote when I
-   first introduced myself to Scheme in 2007.
+** Naming
+   The collection is named `pyani-lib`. The name is so gay because I
+   don't suppose that anyone else will use this lib and it's quite ok
+   to me.
 
-   Yes, I know that SLIB matrix module exists. Yes, I've seen the
-   linear algebra package for PLT.
-   
-   I'd like to implement efficient [[sparse matrix]] storage scheme some
-   day.
-** Some useful functions for matrices and vectors
-   Simple vector and matrix norms are available.
-** Generic operations
-   Addition, subtraction, multiplication and sometimes division for
-   matrices, vectors and numbers: this part is inspired by and derived
-   from generic arithmetics package described in SICP. However, this
-   package does not aim to implement neither advanced coercion magic
-   nor any kind of type tower. Instead it just provides homogenous
-   notation for different operations simply to make code more
-   readable. Compare:
+** Features
+*** Simple implementation of matrices
+    This code is largely derived from matrix module I wrote when I
+    first introduced myself to Scheme in 2007.
+
+    Yes, I know that SLIB matrix module exists. Yes, I've seen the
+    linear algebra package for PLT.
     
-       (matrix-*-vector (matrix-+-matrix m1 m2) v1)
+    I'd like to implement efficient [[sparse matrix]] storage scheme some
+    day.
+*** Some useful functions for matrices and vectors
+    Simple vector and matrix norms are available.
+*** Generic operations
+    Addition, subtraction, multiplication and sometimes division for
+    matrices, vectors and numbers: this part is inspired by and derived
+    from generic arithmetics package described in SICP. However, this
+    package does not aim to implement neither advanced coercion magic
+    nor any kind of type tower. Instead it just provides homogenous
+    notation for different operations simply to make code more
+    readable. Compare:
+     
+        (matrix-*-vector (matrix-+-matrix m1 m2) v1)
 
-   or even (if you rename your identifiers)
-   
-       (v:* (m:+ m1 m2) v1)
-       
-   with
+    or even (if you rename your identifiers)
+    
+        (v:* (m:+ m1 m2) v1)
+        
+    with
 
-       (* (+ m1 m2) v1)
+        (* (+ m1 m2) v1)
 
-   With infix notation code involving different vector and matrix
-   operations will look even better.
-*** Implementation
-    Generic operations uses simple version of `apply-generic` and
-    single dispatching table (see `get-put.ss`) to store and apply
-    different operations.
+    With infix notation code involving different vector and matrix
+    operations will look even better.
+**** Implementation
+     Generic operations uses simple version of `apply-generic` and
+     single dispatching table (see `get-put.ss`) to store and apply
+     different operations.
 
-    Addition and multiplication are n-ary by definition, although
-    packages implement binary versions only. `nary-generic` from
-    `generic-ops.ss` gives a n-ary version of binary operation using
-    the rule of `(op a_1 a_2 a_3) ≡ (op (op a_1 a_2) a_3)`.
+     Addition and multiplication are n-ary by definition, although
+     packages implement binary versions only. `nary-generic` from
+     `generic-ops.ss` gives a n-ary version of binary operation using
+     the rule of `(op a_1 a_2 a_3) ≡ (op (op a_1 a_2) a_3)`.
 
-    Use of this package for anything but «matrix-vector-number» triad
-    is not intended, so in some parts the abstraction level is lower
-    than it might be in a more complex system. For example, `type`
-    implementation in `generic-ops.ss` does know about every type
-    present in the system instead of using tagged data (like in SICP).
-    I can't see how it can harm anything.
-*** Usage
-    Requiring `generic-ops.ss` provides generic operations under
-    standard `+`, `*`, `-` and `/` identifiers. They are guaranteed to
-    work with Scheme numbers the same way built-in implementations do.
+     Use of this package for anything but «matrix-vector-number» triad
+     is not intended, so in some parts the abstraction level is lower
+     than it might be in a more complex system. For example, `type`
+     implementation in `generic-ops.ss` does know about every type
+     present in the system instead of using tagged data (like in SICP).
+     I can't see how it can harm anything.
+**** Usage
+     Requiring `generic-ops.ss` provides generic operations under
+     standard `+`, `*`, `-` and `/` identifiers. They are guaranteed to
+     work with Scheme numbers the same way built-in implementations do.
 
-    Using functions implemented by this package is also possible apart
-    from generic operations, as all `-ops.ss` modules provide them.
+     Using functions implemented by this package is also possible apart
+     from generic operations, as all `-ops.ss` modules provide them.
 * Limitations
 ** Matrix and vectors are not interoperable
    Probably that's where coercions may be needed — now it's
@@ -79,6 +85,9 @@
   Invoking `make` in top-level directory will build a package with
   `.plt` extension. It may installed with `make install` or manually
   using `setup-plt(1)`.
+* Using library
+  You'll want to use the following modules under `pyani-lib`
+  collection: `vector`, `matrix`, `generic-ops`.
 * To be done
 ** TODO [[Sparse matrix]] implementation
    Sparse matrices are often needed in various applications, for
