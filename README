@@ -1,8 +1,9 @@
 -*- mode: org -*-
 
 * About this package
-  This package provides some Scheme libraries intended to be shared at
-  the *source* level (like gnulib).
+  This package provides some Scheme libraries of various flavor. It
+  originates from some code I wanted to share across several of my
+  programs.
 ** Simple implementation of matrices
    This code is largely derived from matrix module I wrote when I
    first introduced myself to Scheme in 2007.
@@ -13,6 +14,7 @@
    I'd like to implement efficient [[sparse matrix]] storage scheme some
    day.
 ** Some useful functions for matrices and vectors
+   Simple vector and matrix norms are available.
 ** Generic operations
    Addition, subtraction, multiplication and sometimes division for
    matrices, vectors and numbers: this part is inspired by and derived
@@ -73,6 +75,10 @@
    This package works for me and is quite suitable for my needs; I
    don't want to reimplement Maxima, so these limitations are likely
    to persist in future versions.
+* Installation
+  Invoking `make` in top-level directory will build a package with
+  `.plt` extension. It may installed with `make install` or manually
+  using `setup-plt(1)`.
 * To be done
 ** TODO [[Sparse matrix]] implementation
    Sparse matrices are often needed in various applications, for
@@ -90,3 +96,5 @@
    possible to apply them both to arguments of types `t1 t2` and to
    those of types `t2 t1` having operation implemented for `t1 t2`
    only. For example, vector×scalar is the same as scalar×vector.
+
+** TODO Strip tests out of .plt archive
