@@ -16,7 +16,8 @@
          rows-map
          row-map column-map
          build-matrix identity-matrix
-         euclidean-norm)
+         euclidean-norm
+         swap-matrix-rows)
 
 ;; Matrix, row and column constructors
 (define matrix vector)

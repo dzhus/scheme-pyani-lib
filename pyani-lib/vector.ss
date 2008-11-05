@@ -5,6 +5,7 @@
 (require srfi/43)
 
 (provide vector-sum
+         swap-vector-items
          absmax-vector-element p-vector-norm
          zero-vector)
 
@@ -23,3 +24,10 @@
 
 (define (zero-vector n)
   (make-vector n 0))
+
+(define (swap-vector-items i j vec)
+  (build-vector (vector-length vec)
+                (lambda (n)
+                  (cond ((= n i) (vector-ref vec j))
+                        ((= n j) (vector-ref vec i))
+                        (else (vector-ref vec n))))))
