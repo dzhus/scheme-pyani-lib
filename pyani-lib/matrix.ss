@@ -13,6 +13,8 @@
          matrix-size row-length column-length
          matrix-rows matrix-columns
          matrix-map
+         rows-map
+         row-map column-map
          build-matrix identity-matrix
          euclidean-norm)
 
@@ -83,3 +85,6 @@
 (define (identity-matrix n)
   (define (kronecker i j) (if (= i j) 1 0))
   (build-matrix kronecker n n))
+
+(define (swap-matrix-rows matrix i j)
+  (swap-vector-items matrix i j))
