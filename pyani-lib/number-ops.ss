@@ -9,4 +9,4 @@
 (define (install-number-generics-package)
   (put 'add '(number number) +)
   (put 'mul '(number number) *)
-  (put 'rev '(number) (lambda (x) (/ 1 x))))
+  (put 'reverse '(number) (lambda (x) (/ 1 x))))
