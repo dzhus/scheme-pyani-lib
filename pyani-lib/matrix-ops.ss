@@ -12,8 +12,8 @@
   (let ((m (matrix-rows m1))
         (n (matrix-columns m1)))
     (build-matrix (lambda (i j)
-                    (+ (matrix-item m1 i j)
-                       (matrix-item m2 i j)))
+                    (+ (matrix-ref m1 i j)
+                       (matrix-ref m2 i j)))
                   m n)))
 
 (define (install-matrix-generics-package)
