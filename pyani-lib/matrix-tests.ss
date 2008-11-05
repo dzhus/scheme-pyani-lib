@@ -7,4 +7,4 @@
 (provide matrix-tests)
 
 (define-test-suite matrix-tests
-  (check-true #f))
+  (check-true #f "Tests are not implemented"))

@@ -24,4 +24,4 @@
     (check-= (vector-sum '#(1 4 2 4)) (vector-sum '#(2 1 5 3)) 0)
     (check-= (vector-sum '#(-0 0 -0.0)) 0 0))
    
-  (check-true #f))
+  (check-true #f "Tests are not implemented"))
