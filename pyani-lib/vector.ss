@@ -25,7 +25,7 @@
 (define (zero-vector n)
   (make-vector n 0))
 
-(define (swap-vector-items i j vec)
+(define (swap-vector-items vec i j)
   (build-vector (vector-length vec)
                 (lambda (n)
                   (cond ((= n i) (vector-ref vec j))
