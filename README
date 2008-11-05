@@ -77,6 +77,10 @@
    _indistinguishable_. Row and column structures are probably too
    simple, therefore currently there is _no way_ to treat `matrix`
    calls with `row` or `column` arguments differently.
+** Slow generics
+   Tests show that generic operations work slower due to dispatching
+   overhead. Probably I should use object system for implementation to
+   [[speed up]] things.
 ** Limitations are ok
    This package works for me and is quite suitable for my needs; I
    don't want to reimplement Maxima, so these limitations are likely
@@ -97,6 +101,7 @@
    approach similar to one used in SICP to implement different
    representations of complex numbers will be taken.
 
+** TODO Speed up generic operations
 ** TODO Use contracts
    Contracts good, bugs bad.
    
