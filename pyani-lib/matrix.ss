@@ -9,7 +9,7 @@
          "vector.ss")
 
 (provide matrix row column matrix?
-         matrix-row row-item column-item matrix-item
+         matrix-row row-ref column-ref matrix-ref
          matrix-size row-length column-length
          matrix-rows matrix-columns
          matrix-map
@@ -33,13 +33,13 @@
        (vector-every vector? m)))
 
 ;; Selectors
-(define (matrix-item matrix i j)
-  (row-item (matrix-row matrix i) j))
+(define (matrix-ref matrix i j)
+  (row-ref (matrix-row matrix i) j))
 (define matrix-row vector-ref)
 (define matrix-column vector-ref)
 
-(define row-item vector-ref)
-(define column-item vector-ref)
+(define row-ref vector-ref)
+(define column-ref vector-ref)
 
 (define row-length vector-length)
 (define column-length vector-length)
@@ -63,8 +63,8 @@
   (vector-map
    (lambda (i row)
      (vector-map
-      (lambda (j item)
-        (proc i j item))
+      (lambda (j e)
+        (proc i j e))
       row))
    matrix))
 
@@ -77,8 +77,8 @@
   (vector-append matrix row))
 
 (define (add-column matrix column)
-  (vector-map (lambda (i matrix-row column-item)
-                (vector-append matrix-row (vector column-item)))
+  (vector-map (lambda (i matrix-row column-ref)
+                (vector-append matrix-row (vector column-ref)))
               matrix column))
 
 ;; Norms
