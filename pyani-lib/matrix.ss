@@ -17,7 +17,7 @@
          row-map column-map
          add-row add-column
          build-matrix identity-matrix
-         euclidean-norm
+         euclidean-matrix-norm
          swap-matrix-rows)
 
 ;; Matrix, row and column constructors
@@ -82,7 +82,7 @@
               matrix column))
 
 ;; Norms
-(define (euclidean-norm m)
+(define (euclidean-matrix-norm m)
   (sqrt
    (vector-sum
     (rows-map
