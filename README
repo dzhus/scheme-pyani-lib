@@ -65,6 +65,12 @@
 
      Using functions implemented by this package is also possible apart
      from generic operations, as all `-ops.ss` modules provide them.
+*** Procedures for functions
+    Derivatives (usual and partial), gradient and Hessian matrix
+    procedures are available under `pyani-lib/function-ops`.
+
+    This code was originally written for paper on optimization
+    methods.
 * Limitations
 ** Matrix and vectors are not interoperable
    Probably that's where coercions may be needed — now it's
@@ -91,7 +97,7 @@
   using `setup-plt(1)`.
 * Using library
   You'll want to use the following modules under `pyani-lib`
-  collection: `vector`, `matrix`, `generic-ops`.
+  collection: `vector`, `matrix`, `generic-ops`, `function-ops`.
 * To be done
 ** TODO [[Sparse matrix]] implementation
    Sparse matrices are often needed in various applications, for
@@ -112,3 +118,6 @@
    only. For example, vector×scalar is the same as scalar×vector.
 
 ** TODO Strip tests out of .plt archive
+** TODO Introduce «function» type to generic operations module
+   So it would be possible to multiply function and scalar by simply
+   writing `(* 5 f)` etc.
