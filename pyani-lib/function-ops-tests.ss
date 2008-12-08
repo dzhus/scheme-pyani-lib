@@ -10,9 +10,11 @@
 
 (define test-epsilon 1e-6)
 
+;; Check that vectors of equal length have the same components
 (define-check (check-vectors v1 v2 epsilon)
   (vector= (lambda (x y) (check-= x y epsilon)) v1 v2))
 
+;; Check numbers or vectors of numbers for equality
 (define-check (mcheck-= v1 v2)
   (if (and (vector? v1) (vector? v2))
       (check-vectors v1 v2 test-epsilon)
