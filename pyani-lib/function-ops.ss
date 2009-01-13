@@ -2,9 +2,10 @@
 
 ;;; Various functions for functions
 
+;;; THIS MODULE IS DELIBERATELY BROKENED!!!
+
 (require srfi/43
-         "matrix.ss"
-         "generic-ops.ss")
+         "matrix.ss")
 
 (provide deriv gradient hessian
          at-vector @)

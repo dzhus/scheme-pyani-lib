@@ -25,6 +25,7 @@
 (define (zero-vector n)
   (make-vector n 0))
 
+;; TODO Provide fast destructive replacement for this function
 (define (swap-vector-items vec i j)
   (build-vector (vector-length vec)
                 (lambda (n)

@@ -2,84 +2,13 @@
 
 ;;; Matrix package
 
-;; Matrices are implemented as vectors of vectors. Many of these
-;; functions are specific to such representation.
+;;; THIS MODULE IS DELIBERATELY BROKENED!!!
 
 (require srfi/43
          "vector.ss")
 
-(provide matrix row column matrix?
-         matrix-row row-ref column-ref matrix-ref
-         matrix-size row-length column-length
-         matrix-rows matrix-columns
-         matrix-map
-         rows-map
-         row-map column-map
-         add-row add-column
-         build-matrix identity-matrix
-         euclidean-matrix-norm
+(provide euclidean-matrix-norm
          swap-matrix-rows)
-
-;; Matrix, row and column constructors
-(define matrix vector)
-(define row vector)
-(define column vector)
-
-;; Predicate
-;; 
-;; TODO Extend the definition
-(define (matrix? m)
-  (and (vector? m)
-       (vector-every vector? m)))
-
-;; Selectors
-(define (matrix-ref matrix i j)
-  (row-ref (matrix-row matrix i) j))
-(define matrix-row vector-ref)
-(define matrix-column vector-ref)
-
-(define row-ref vector-ref)
-(define column-ref vector-ref)
-
-(define row-length vector-length)
-(define column-length vector-length)
-
-;; Square matrix only
-(define matrix-size vector-length)
-
-(define matrix-rows vector-length)
-(define (matrix-columns m)
-  (row-length (matrix-row m 0)))
-
-;; List-style maps for matrices
-(define (rows-map proc matrix)
-  (vector-map (lambda (row-index row) (proc row)) matrix))
-(define (row-map proc row)
-  (vector-map (lambda (i e) (proc e)) row))
-(define (column-map proc column)
-  (vector-map (lambda (i e) (proc e)) column))
-
-(define (matrix-map proc matrix)
-  (vector-map
-   (lambda (i row)
-     (vector-map
-      (lambda (j e)
-        (proc i j e))
-      row))
-   matrix))
-
-;; Generic matrix constructor
-(define (build-matrix proc rows columns)
-  (matrix-map (lambda (i j e) (proc i j))
-              (make-vector rows (make-vector columns))))
-
-(define (add-row matrix row)
-  (vector-append matrix row))
-
-(define (add-column matrix column)
-  (vector-map (lambda (i matrix-row column-ref)
-                (vector-append matrix-row (vector column-ref)))
-              matrix column))
 
 ;; Norms
 (define (euclidean-matrix-norm m)
