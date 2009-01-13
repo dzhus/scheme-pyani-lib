@@ -21,22 +21,21 @@
 ;; Derivative (partial probably)
 ;; 
 ;; (numbers -> numbers) -> (numbers -> numbers)
-(define (deriv f [arg 1] [dx deriv-dx])
-  (define (der . args)
+(define (deriv f [arg 0] [dx deriv-dx])
+  (lambda args
     (/
      (-
       (apply f
              (append
-              (take args (sub1 arg))
-              (list (+ (list-ref args (sub1 arg)) dx))
-              (drop args arg)))
+              (take args arg)
+              (list (+ (list-ref args arg) dx))
+              (drop args (add1 arg))))
       (apply f
              (append
-              (take args (sub1 arg))
-              (list (- (list-ref args (sub1 arg)) dx))
-              (drop args arg))))
-     (* 2 dx)))
-  der)
+              (take args arg)
+              (list (- (list-ref args arg) dx))
+              (drop args (add1 arg)))))
+     (* 2 dx))))
 
 ;; Gradient of a function (still a vector for unary function)
 ;;
