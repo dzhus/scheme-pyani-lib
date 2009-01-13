@@ -52,7 +52,6 @@
   (let ((n (procedure-arity f)))
     (lambda args
       (build-matrix (lambda (i j)
-                      (apply (deriv (deriv f (add1 i) dx) (add1 j) dx)
+                      (apply (deriv (deriv f i dx) j dx)
                              args))
                     n n))))
-
