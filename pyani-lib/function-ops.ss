@@ -2,8 +2,6 @@
 
 ;;; Various functions for functions
 
-;;; THIS MODULE IS DELIBERATELY BROKENED!!!
-
 (require srfi/43
          "matrix.ss")
 
@@ -54,7 +52,7 @@
   (let ((n (procedure-arity f)))
     (lambda args
       (build-matrix (lambda (i j)
-                      (apply (deriv
-                              (deriv f (add1 i) dx) (add1 j) dx)
+                      (apply (deriv (deriv f (add1 i) dx) (add1 j) dx)
                              args))
                     n n))))
+
