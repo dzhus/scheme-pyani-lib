@@ -41,7 +41,7 @@
 
 ;; Build matrix with `n` rows and `m` columns, where each element is
 ;; computed as `(proc i j)`. Note that rows and columns are 0-based.
-(define (build-matrix proc n m)
+(define (build-matrix n m proc)
   (for*/matrix n m
                ((i (in-range n))
                 (j (in-range m)))

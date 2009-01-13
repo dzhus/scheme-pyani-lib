@@ -51,7 +51,7 @@
 (define (hessian f [dx deriv-dx])
   (let ((n (procedure-arity f)))
     (lambda args
-      (build-matrix (lambda (i j)
+      (build-matrix n n
+                    (lambda (i j)
                       (apply (deriv (deriv f i dx) j dx)
-                             args))
-                    n n))))
+                             args))))))
