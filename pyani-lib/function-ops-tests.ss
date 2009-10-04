@@ -37,6 +37,7 @@
   (let ((v '#(1 2 3 4))
         (g (lambda (x y) (* (sqr x) (sqrt y))))
         (f (lambda (x y z t) (+ (* z (sqr x)) (sqrt y) (- (exp z) (* x (expt t 3)))))))
+    
     (test-case
      "at-vector"
      (check-equal? (@ + '#(1 2 3)) (+ 1 2 3))

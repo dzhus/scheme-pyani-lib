@@ -3,10 +3,28 @@
 ;;; Various functions for functions
 
 (require srfi/43
+         (planet wmfarr/simple-matrix:1:0/matrix)
          "matrix.ss")
 
-(provide deriv gradient hessian
-         at-vector @)
+(provide/contract
+ [deriv
+  (->d ([f procedure?])
+       ([arg (and/c integer?
+                    (>=/c 0)
+                    (</c (procedure-arity f)))]
+        [dx number?])
+       (derivative procedure?))]
+ [gradient
+  (->* (procedure?) (number?) procedure?)]
+ [hessian
+  (->* (procedure?) (number?) procedure?)]
+ [at-vector
+  (->d ([f procedure?]
+        [v (vector-of-length/c (procedure-arity f))])
+       ()
+       any)])
+
+(provide @)
 
 ;; `(at-vector f '#(a b))` is `(f a b)`
 (define (at-vector f v)
@@ -36,18 +54,14 @@
      (* 2 dx))))
 
 ;; Gradient of a function (still a vector for unary function)
-;;
-;; (numbers -> numbers) -> (numbers -> vector)
 (define (gradient f [dx deriv-dx])
   (let ((n (procedure-arity f)))
     (lambda args
       (build-vector n
                     (lambda (i)
-                      (apply (deriv f (add1 i) dx) args))))))
+                      (apply (deriv f i dx) args))))))
 
 ;; Hessian matrix
-;; 
-;; (numbers -> numbers) -> (numbers -> matrix)
 (define (hessian f [dx deriv-dx])
   (let ((n (procedure-arity f)))
     (lambda args
