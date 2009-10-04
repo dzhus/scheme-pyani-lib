@@ -2,8 +2,6 @@
 
 ;;; Matrix package
 
-;;; THIS MODULE IS DELIBERATELY BROKENED!!!
-
 (require srfi/43
          (planet wmfarr/simple-matrix:1:0/matrix))
 
@@ -26,12 +24,12 @@
        #:post-cond (and (= (matrix-rows m) rows)
                         (= (matrix-cols m) cols)))])
 
-;; Norms
 (define (euclidean-matrix-norm m)
   (sqrt
    (apply +
           (for/list ((x (in-matrix m))) (sqr (abs x))))))
 
+;; Very slow
 (define (swap-matrix-rows m r1 r2)
   (for/matrix (matrix-rows m) (matrix-cols m)
               (((i j x) (in-matrix m)))

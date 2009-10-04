@@ -22,4 +22,16 @@
                   (matrix* 2 2
                            0 6
                            8 0))
-                 10)))
+                 10))
+  (test-case
+   "Swapping"
+   (check-equal? (matrix* 3 2
+                          0 0
+                          1 1
+                          2 2)
+                 (swap-matrix-rows
+                  (matrix* 3 2
+                           1 1
+                           0 0
+                           2 2)
+                  0 1))))
