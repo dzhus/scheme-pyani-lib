@@ -24,9 +24,9 @@
   using `setup-plt(1)`.
 * Using library
   You'll want to use the following modules under `pyani-lib`
-  collection: `function-ops`.
+  collection: `function-ops`, `vector`, `matrix`.
 * To be done
-** TODO Use contracts
+** IN PROGRESS Use contracts
    Contracts good, bugs bad.
    
 ** TODO Strip tests out of .plt archive
