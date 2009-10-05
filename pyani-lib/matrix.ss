@@ -17,7 +17,7 @@
        ()
        (_ matrix?))]
  [build-matrix
-  (->d ([proc procedure?] [rows natural-number/c] [cols natural-number/c])
+  (->d ([rows natural-number/c] [cols natural-number/c] [proc procedure?])
        ()
        #:pre-cond (= (procedure-arity proc) 2)
        (m matrix?)
