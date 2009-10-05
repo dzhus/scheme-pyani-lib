@@ -5,9 +5,11 @@
 
 (require "matrix-tests.ss"
          "vector-tests.ss"
-         "function-ops-tests.ss")
+         "function-ops-tests.ss"
+         "linear-eq-tests.ss")
 
 (exit (run-tests (test-suite "All tests"
                              matrix-tests
                              vector-tests
-                             function-ops-tests)))
+                             function-ops-tests
+                             lineq-tests)))
