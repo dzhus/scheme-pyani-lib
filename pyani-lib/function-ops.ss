@@ -35,8 +35,6 @@
 (define deriv-dx 1e-6)
 
 ;; Derivative (partial probably)
-;; 
-;; (numbers -> numbers) -> (numbers -> numbers)
 (define (deriv f [arg 0] [dx deriv-dx])
   (lambda args
     (/
