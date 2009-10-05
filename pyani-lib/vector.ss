@@ -6,6 +6,7 @@
 
 (provide vector-sum
          swap-vector-items
+         swap-vector-items!
          absmax-vector-element p-vector-norm
          zero-vector)
 
@@ -25,10 +26,15 @@
 (define (zero-vector n)
   (make-vector n 0))
 
-;; TODO Provide fast destructive replacement for this function
 (define (swap-vector-items vec i j)
   (build-vector (vector-length vec)
                 (lambda (n)
                   (cond ((= n i) (vector-ref vec j))
                         ((= n j) (vector-ref vec i))
                         (else (vector-ref vec n))))))
+
+(define (swap-vector-items! vec i j)
+  (let ((old-i (vector-ref vec i))
+        (old-j (vector-ref vec j)))
+    (vector-set! vec i old-j)
+    (vector-set! vec j old-i)))
