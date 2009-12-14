@@ -14,6 +14,11 @@
 
 ;; Miscellaneous functions used to provide abstraction from matrix
 ;; representation
+;;
+;; Functions like `add-column`, `matrix-but-first-row`,
+;; `matrix-but-first-column` are very slow because they use
+;; `build-matrix`.
+
 (define-syntax-rule [row-ref r n] [vector-ref r n])
 
 (define-syntax-rule [row-length r] [vector-length r])
@@ -91,7 +96,9 @@
 
 
 ;; Solve a system of linear equations given its matrix A and right
-;; vector v, given A is _invertible_
+;; vector v using Gauss elimination.
+;;
+;; A must be _invertible_.
 (define (solve-linear A v)
   ;; Get the top left coefficient of an augmented matrix
   (define (top-left equations)
