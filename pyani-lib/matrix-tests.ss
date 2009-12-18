@@ -34,4 +34,24 @@
                            1 1
                            0 0
                            2 2)
-                  0 1))))
+                  0 1)))
+
+  (test-case
+   "Identity"
+   (check-equal? (matrix* 3 3
+                          1 0 0
+                          0 1 0
+                          0 0 1)
+                 (identity-matrix 3)))
+
+  (test-case
+   "Matrix size"
+   (check-equal? (matrix-size
+                  (matrix* 3 3
+                           1 1 0
+                           2 1 0
+                           5 0 1))
+                 3)
+   (check-equal? (matrix-size
+                  (identity-matrix 5))
+                 5)))

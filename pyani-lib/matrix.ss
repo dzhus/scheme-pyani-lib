@@ -22,7 +22,14 @@
        #:pre-cond (= (procedure-arity proc) 2)
        (m matrix?)
        #:post-cond (and (= (matrix-rows m) rows)
-                        (= (matrix-cols m) cols)))])
+                        (= (matrix-cols m) cols)))]
+ [matrix-size
+  (->d ([m matrix?])
+       ()
+       #:pre-cond (= (matrix-rows m) (matrix-cols m))
+       (n natural-number/c))]
+ [identity-matrix
+  (natural-number/c . -> . matrix?)])
 
 (define (euclidean-matrix-norm m)
   (sqrt
@@ -44,3 +51,13 @@
                ((i (in-range n))
                 (j (in-range m)))
                (proc i j)))
+
+;; Square matrix size
+(define (matrix-size m)
+  (matrix-rows m))
+
+(define (kronecker i j)
+  (if (= i j) 1 0))
+
+(define (identity-matrix m)
+  (build-matrix m m kronecker))

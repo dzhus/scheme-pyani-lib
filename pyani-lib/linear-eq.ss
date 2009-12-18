@@ -27,9 +27,6 @@
 
 (define-syntax-rule [column-length c] [vector-length c])
 
-;; We assume matrices are square
-(define-syntax-rule [matrix-size m] [matrix-rows m])
-
 (define (first-row m)
   (build-vector (matrix-cols m)
                 (lambda (n) (matrix-ref m 0 n))))
