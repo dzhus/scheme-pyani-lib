@@ -86,11 +86,6 @@
    0
    (iota (column-length column))))
 
-(define (matrix-map proc m)
-  (build-matrix (matrix-rows m)
-                (matrix-cols m)
-                (lambda (i j) (proc i j (matrix-ref m i j)))))
-
 
 ;; Solve a system of linear equations given its matrix A and right
 ;; vector v using Gauss elimination.

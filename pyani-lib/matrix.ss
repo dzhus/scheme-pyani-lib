@@ -29,7 +29,12 @@
        #:pre-cond (= (matrix-rows m) (matrix-cols m))
        (n natural-number/c))]
  [identity-matrix
-  (natural-number/c . -> . matrix?)])
+  (natural-number/c . -> . matrix?)]
+ [matrix-map
+  (->d ([proc procedure?] [m matrix?])
+       ()
+       #:pre-cond (= (procedure-arity proc) 3)
+       (o matrix?))])
 
 (define (euclidean-matrix-norm m)
   (sqrt
@@ -51,6 +56,11 @@
                ((i (in-range n))
                 (j (in-range m)))
                (proc i j)))
+
+(define (matrix-map proc m)
+  (build-matrix (matrix-rows m)
+                (matrix-cols m)
+                (lambda (i j) (proc i j (matrix-ref m i j)))))
 
 ;; Square matrix size
 (define (matrix-size m)
