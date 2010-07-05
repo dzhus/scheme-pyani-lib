@@ -3,7 +3,7 @@
 * About this package
   This package provides some Scheme libraries of various flavor. It
   originates from some code I wanted to share across several of my
-  programs.
+  programs. This package is compatible with Racket.
 ** Naming
    The collection is named `pyani-lib`. The name is so gay because I
    don't suppose that anyone else will use this lib and it's quite ok
@@ -21,7 +21,7 @@
 * Installation
   Invoking `make` in top-level directory will build a package with
   `.plt` extension. It may installed with `make install` or manually
-  using `setup-plt(1)`.
+  using `raco(1)`.
 * Using library
   You'll want to use the following modules under `pyani-lib`
   collection: `function-ops`, `vector`, `matrix`.

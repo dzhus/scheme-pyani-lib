@@ -4,19 +4,19 @@ LIBDIR := pyani-lib
 PLTNAME := $(LIBDIR).plt
 
 SCHEME := mzscheme
-MZC := mzc
-SETUP-PLT := setup-plt
+PACK-PLT := raco pack
+SETUP-PLT := raco setup
 SOURCES := $(wildcard $(LIBDIR)/*)
 TESTFILE := $(LIBDIR)/tests.ss
 
 define get-user-collects
-$(shell mzscheme -e "(require setup/dirs) (display (path->string (find-user-collects-dir)))")
+$(shell $(SCHEME) -e "(require setup/dirs) (display (path->string (find-user-collects-dir)))")
 endef
 
 .PHONY: all install uninstall clean check
 
 $(PLTNAME): $(SOURCES)
-	$(MZC) --plt $@ --at-plt --plt-name "Pyani library" $(LIBDIR)
+	$(PACK-PLT) --at-plt --plt-name "Pyani library" $@ $(LIBDIR)
 
 all: $(PLTNAME)
 
