@@ -2,9 +2,11 @@
 
 ;;; Various functions for vectors
 
-(require srfi/43)
+(require srfi/43
+         (planet wmfarr/simple-matrix:1:0/matrix))
 
 (provide vector-sum
+         vectors-add
          swap-vector-items
          swap-vector-items!
          absmax-vector-element p-vector-norm
@@ -13,6 +15,12 @@
 ;; Sum of all vector elements
 (define (vector-sum vec)
   (vector-fold (lambda (i sum x) (+ sum x)) 0 vec))
+
+;; Variable arity version of vector-add
+(define-syntax vectors-add
+  (syntax-rules ()
+    [(vectors-add v1 v2) (vector-add v1 v2)]
+    [(vectors-add v1 v2 ...) (vector-add v1 (vectors-add v2 ...))]))
 
 (define (absmax-vector-element v)
   (vector-fold (lambda (i max e) (if (> (abs e) max) (abs e) max))
